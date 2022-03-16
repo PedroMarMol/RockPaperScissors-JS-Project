@@ -4,12 +4,12 @@ var scissors = "Scissors";
 var paper = "Paper";
 var rock = "Rock";
 
-function computerPlay() {
-    return gameChoice[Math.floor(Math.random() * gameChoice.length)];
+function computerPlay() {                                                       // Chooses a random number and convert it so it 
+    return gameChoice[Math.floor(Math.random() * gameChoice.length)];           // ends up choosing a word of the three (rock, paper or scissors).
 }
 
-function gameRound(playerSelection, computerSelection) {
-    if (playerSelection.toUpperCase() === computerSelection.toUpperCase()) {
+function gameRound(playerSelection, computerSelection) {                        // function that plays a single round of the game, 
+    if (playerSelection.toUpperCase() === computerSelection.toUpperCase()) {    // checking every case one by one and returning the winner.
         return "You have tied";
     }   else if (playerSelection.toUpperCase() === scissors.toUpperCase() && computerSelection.toUpperCase() === paper.toUpperCase()) {
         return "You win! Scissors beats Paper";
@@ -28,7 +28,7 @@ function gameRound(playerSelection, computerSelection) {
                             }
 }
 
-function game() {
+function game() {                       // creates a 5 round game and adds on the win-loses of the player and the computer
     for (let i = 0; i < 5; i++) {
         gameRound 
     }

@@ -1,9 +1,8 @@
 let gameChoice = ["Paper", "Rock","Scissors"];
 var playerSelection;
-const computerSelection = computerPlay();
 let playerCounter = 0;
 let computerCounter = 0;
-let winner;
+let computerSelection = computerPlay();
 var scissors = "Scissors";
 var paper = "Paper";
 var rock = "Rock";
@@ -12,8 +11,36 @@ function computerPlay() {                                                       
     return gameChoice[Math.floor(Math.random() * gameChoice.length)];           // ends up choosing a word of the three (rock, paper or scissors).
 }
 
-function gameRound(playerSelection, computerSelection) {                        // function that plays a single round of the game, 
-    if (playerSelection.toUpperCase() === computerSelection.toUpperCase()) {    // checking every case one by one and returning the winner.
+const btn1 = document.createElement("button");
+btn1.innerHTML = rock;
+btn1.addEventListener('click', function() { 
+    div.textContent = (playRound(rock, computerSelection)); 
+    gameCounter();
+});
+    document.body.appendChild(btn1);
+
+const btn2 = document.createElement("button");
+btn2.innerHTML = paper;
+btn2.addEventListener('click', function() { 
+    div.textContent = (playRound(paper, computerSelection)); 
+    gameCounter();
+});
+document.body.appendChild(btn2);
+
+const btn3 = document.createElement("button");
+btn3.innerHTML = scissors;
+btn3.addEventListener('click', function() { 
+    div.textContent = (playRound(scissors, computerSelection));
+    gameCounter();
+});
+document.body.appendChild(btn3);
+
+const div = document.createElement('div');
+document.body.appendChild(div);
+
+function playRound(playerSelection, computerSelection) {                        // function that plays a single round of the game, 
+        computerSelection = computerPlay();                                     // checking every case one by one and returning the winner.
+    if (playerSelection.toUpperCase() === computerSelection.toUpperCase()) {    
         return "You have tied";
     }   else if (playerSelection.toUpperCase() === scissors.toUpperCase() && computerSelection.toUpperCase() === paper.toUpperCase()) {
         return "You win!";
@@ -28,33 +55,28 @@ function gameRound(playerSelection, computerSelection) {                        
                         }   else if (playerSelection.toUpperCase() === paper.toUpperCase() && computerSelection.toUpperCase() === rock.toUpperCase()) {
                             return "You win!";
                             } else {
-                                return "You didn't type a correct answer (Rock, Paper or Scissors).";
+                                return "You didn't select a correct answer (Rock, Paper or Scissors).";
                             }
 }
 
-function game() {                       // creates a 5 round game and adds on the win-loses of the player and the computer
-    for (let i = 0; i < 5; i++) {
-        playerSelection = prompt("What is your choice? Rock, Paper or Scissors?");
-        console.log(gameRound(playerSelection, computerSelection));
-        if (gameRound(playerSelection, computerSelection) === "You win!"){
-            playerCounter++;
-        } else if (gameRound(playerSelection, computerSelection) === "You lose!") {
-            computerCounter++;
-        } else if (gameRound(playerSelection, computerSelection) === "You have tied") {
-            computerCounter++;
-            playerCounter++;
-        }
+function gameCounter() {                                                                 // function that counts the points of each player and stops when one reaches 5
 
-        if (computerCounter > playerCounter) {
-            winner = "The Computer";
-        } else {winner = "You"}
-    }   
+    if (div.textContent == "You win!") playerCounter++;                                  // counter that adds up player and computer points
+        else if (div.textContent == "You lose!") computerCounter++;
+            else {playerCounter++; computerCounter++;}
 
-    console.log("Your points: " + playerCounter + " Computer Points: " + computerCounter);
-    console.log(winner +" won!");
+            console.log("player:  " + playerCounter);
+            console.log("computer:   " + computerCounter);
+
+    if (playerCounter == 5 && computerCounter == 5) {console.log("You have tied!");      // checks if any counter reached 5, if so then it stops and resets the counters
+                                                        playerCounter = 0;
+                                                        computerCounter = 0;}
+        else if (playerCounter == 5) {console.log("You are the winner!");
+                                                        playerCounter = 0;
+                                                        computerCounter = 0;}
+            else if (computerCounter == 5) {console.log("The computer is the winner!");
+                                                        playerCounter = 0;
+                                                        computerCounter = 0;}
 }
-
-game();
-
 
 

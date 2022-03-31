@@ -65,9 +65,6 @@ function gameCounter() {                                                        
         else if (div.textContent == "You lose!") computerCounter++;
             else {playerCounter++; computerCounter++;}
 
-            console.log("player:  " + playerCounter);
-            console.log("computer:   " + computerCounter);
-
     if (playerCounter == 5 && computerCounter == 5) {console.log("You have tied!");      // checks if any counter reached 5, if so then it stops and resets the counters
                                                         playerCounter = 0;
                                                         computerCounter = 0;}
